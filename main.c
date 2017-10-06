@@ -49,35 +49,39 @@ void init_t();
 typedef struct
 {
 	uint32 out;
+	void(*fptrPort)(uint32);
 	uint16 wait;
-	uint8 next;
+	void (*fptrDelay)(uint16);
+	uint8 next[2];
 }StateType;
+
+
 
 StateType Sequence1[2]=
 		{
-			{LED_GREEN_ON,		ONESECOND, OFF},//MAQUIN DE ESTADOS PARA SW3
+			{LED_GREEN_ON,		ONESECOND, ON},//MAQUIN DE ESTADOS PARA SW3
 			{LED_GREEN_OFF, 	ONESECOND, OFF},
-			{LED_BLUE_ON, 		ONESECOND, OFF},
+			{LED_BLUE_ON, 		ONESECOND, ON},
 			{LED_BLUE_OFF, 		ONESECOND, OFF},
-			{LED_PURPLE_ON, 	ONESECOND, OFF},
+			{LED_PURPLE_ON, 	ONESECOND, ON},
 			{LED_PURPLE_OFF, 	ONESECOND, OFF},
-			{LED_RED_ON, 		ONESECOND, OFF},
-			{LED_RED_ON, 		ONESECOND, OFF},
+			{LED_RED_ON, 		ONESECOND, ON},
+			{LED_RED_ON, 		ONESECOND, ON},
 			{LED_HELLOW_ON, 	ONESECOND, OFF},
-			{LED_HELLOW_OFF, 	ONESECOND, OFF},
+			{LED_HELLOW_OFF, 	ONESECOND, ON},
 		};
 
 StateType Sequence2[2]=
 		{
-			{LED_HELLOW_ON, 	ONESECOND, OFF},//MAQUINA DE ESTADOS PARA SW2
+			{LED_HELLOW_ON, 	ONESECOND, ON},//MAQUINA DE ESTADOS PARA SW2
 			{LED_HELLOW_OFF, 	ONESECOND, OFF},
+			{LED_RED_ON, 		ONESECOND, ON},
 			{LED_RED_ON, 		ONESECOND, OFF},
-			{LED_RED_ON, 		ONESECOND, OFF},
-			{LED_PURPLE_ON, 	ONESECOND, OFF},
+			{LED_PURPLE_ON, 	ONESECOND, ON},
 			{LED_PURPLE_OFF, 	ONESECOND, OFF},
-			{LED_BLUE_ON, 		ONESECOND, OFF},
+			{LED_BLUE_ON, 		ONESECOND, ON},
 			{LED_BLUE_OFF, 		ONESECOND, OFF},
-			{LED_GREEN_ON,		ONESECOND, OFF},
+			{LED_GREEN_ON,		ONESECOND, ON},
 			{LED_GREEN_OFF, 	ONESECOND, OFF},
 
 
@@ -87,11 +91,18 @@ StateType Sequence2[2]=
 
 
 int main(void) {
+	uint8 currentState = ON; //variables para la maquina de estados (sw3)
+	uint32 output=0;
+	uint32 input=0;
 
+	uint8 currentState1 = ON; //variables para la maquina de estados (sw2)
+	uint32 output1=0;
+	uint32 input1=0;
 
 
 	for(;;)
 	{
+		output = FSM_Moore[currentState].out;
 
 	}
 }
