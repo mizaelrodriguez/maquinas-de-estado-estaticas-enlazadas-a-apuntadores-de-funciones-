@@ -1,0 +1,1 @@
+# maquinas-de-estado-estaticas-enlazadas-a-apuntadores-de-funciones-
